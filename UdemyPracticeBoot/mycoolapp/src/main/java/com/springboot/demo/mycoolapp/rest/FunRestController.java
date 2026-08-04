@@ -8,6 +8,8 @@ public class FunRestController {
 
     @GetMapping("/")
     public String sayHello() {
-        return "Hello World!";
+        return "Hello World From Ifti Haque! <br>" +
+                "Pray for me. I'm working hard to become a Spring Boot Developer.";
     }
+
 }
