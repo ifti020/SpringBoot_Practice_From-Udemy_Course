@@ -3,10 +3,6 @@ package com.ifti.springcoredemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication(
-//		scanBasePackages = {"com.ifti.springcoredemo", "com.ifti.util"}
-//
-//)
 @SpringBootApplication
 public class SpringcoredemoApplication {
 

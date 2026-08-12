@@ -1,4 +1,4 @@
-package com.ifti.util;
+package com.ifti.springcoredemo.common;
 
 import org.springframework.stereotype.Component;
 
@@ -7,6 +7,6 @@ public class CricketCoach implements Coach {
 
     @Override
     public String getDailyWorkout() {
-        return "Practice fast bowling for 25 minutes. Now !!!";
+        return "Practice slow bowling for 25 minutes. Now !!!";
     }
 }
