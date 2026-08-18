@@ -1,5 +1,7 @@
 package com.ifti.cruddemo;
 
+import com.ifti.cruddemo.dao.StudentDAO;
+import com.ifti.cruddemo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +17,25 @@ public class CruddemoApplication {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner ->
 		{
-			System.out.println("hello ifti from cruddemo");
+			createStudent(studentDAO);
 		};
+	}
+
+	private void createStudent(StudentDAO studentDAO) {
+		//create the student object
+		System.out.println("Creating new student object ...");
+		Student tempStudent = new Student("ifti", "Haque", "ifti1@gmail.com");
+		// save the studnet object
+		System.out.println("Saving the student ...");
+		studentDAO.save(tempStudent);
+
+		// diaplay id of the saved student
+		System.out.println("Saved student. Generated id: " + tempStudent.getId());
+
+
 	}
 
 

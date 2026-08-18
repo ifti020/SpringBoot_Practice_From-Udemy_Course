@@ -3,7 +3,7 @@ package com.ifti.cruddemo.entity;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
-@Enabled
+@Entity
 @Table(name="student")
 public class Student {
     // define fields
@@ -23,11 +23,15 @@ public class Student {
     private String email;
 
 
-    // define constrtuctors
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+    // define constrtuctors
+    public Student() {
+
     }
 
 
