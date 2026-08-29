@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import java.sql.SQLOutput;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -21,9 +23,41 @@ public class CruddemoApplication {
 		return runner ->
 		{
 //			createStudent(studentDAO);
-			createMultipeStudents(studentDAO);
+//			createMultipeStudents(studentDAO);
+
+			readStudent(studentDAO);
 		};
 
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		// how to read data using hibernate
+		// step 1 : create a student object
+		// step 2 : save the student object
+		// step 3 : display the id of the saved student
+		// step 4 : retrieve student based on the id : primary key
+		// step 5 : display student
+
+		///////////////////////////////////////
+		//start here
+		// step 1 : create a student object
+		System.out.println("Creating new student object ...");
+		Student tempStudent = new Student("Tahim", "Mostafiz", "tahim@gmail.com");
+
+		// step 2 : save the student object
+		System.out.println("Saving the student ...");
+		studentDAO.save(tempStudent);
+
+		// step 3 : display the id of the saved student
+		int theId = tempStudent.getId();
+		System.out.println("Saved student. Generated id: " + theId);
+
+		// step 4 : retrieve student based on the id : primary key
+		System.out.println("Retrieving student with id: " + theId);
+		Student myStudent = studentDAO.findById(theId);
+
+		// step 5 : display student
+		System.out.println("Found the student: " + myStudent);
 	}
 
 	private void createMultipeStudents(StudentDAO studentDAO) {
