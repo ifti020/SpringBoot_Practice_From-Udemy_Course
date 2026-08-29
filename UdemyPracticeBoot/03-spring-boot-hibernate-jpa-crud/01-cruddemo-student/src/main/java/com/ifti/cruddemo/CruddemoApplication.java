@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -25,9 +26,34 @@ public class CruddemoApplication {
 //			createStudent(studentDAO);
 //			createMultipeStudents(studentDAO);
 
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+
+//			queryForStudents(studentDAO);
+
+			queryForStudentsByLastName(studentDAO);
 		};
 
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// step 1 : get a list of students
+		List <Student> theStudents = studentDAO.findByLastName("Viya");
+
+		// step 2 : display list of students
+		for (Student tempStudent : theStudents)
+		{
+			System.out.println(tempStudent);
+		}
+
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		//step 1 : get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+		//step 2 : dislay list of students
+		for (Student tempStudent : theStudents){
+			System.out.println(tempStudent);
+		}
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
