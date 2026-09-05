@@ -4,8 +4,10 @@ import com.ifti.springboot.__spring_boot_rest_crud_employee.entity.Employee;
 import com.ifti.springboot.__spring_boot_rest_crud_employee.service.EmployeeService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.*;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -13,10 +15,13 @@ public class EmployeeRestController {
 
     private EmployeeService employeeService;
 
+    private JsonMapper jsonMapper;
+
     // quick and dirty : inejct employee dao
 
-    public EmployeeRestController(EmployeeService theEmployeeService){
+    public EmployeeRestController(EmployeeService theEmployeeService, JsonMapper theJsonMapper){
         this.employeeService= theEmployeeService;
+        this.jsonMapper = theJsonMapper;
     }
 
     // expose "/employees" and return a list of employees
@@ -54,5 +59,32 @@ public class EmployeeRestController {
         Employee dbEmployee = employeeService.save(theEmployee);
         return dbEmployee;
     }
+    //
+    
+    //add mapping for patch
+    @PatchMapping("/employees/{employeeId}")
+    public Employee patchEmployee(@PathVariable int employeeId,
+                                  @RequestBody Map<String, Object> patchPayload){
+
+        Employee tempEmployee = employeeService.findById(employeeId);
+
+        // throw exception if null
+        if(tempEmployee == null)
+        {
+            throw new RuntimeException("Employee id not found " + "-  " + employeeId );
+        }
+
+        // throw exception if request body contains "id" key
+        if(patchPayload.containsKey("id")){
+            throw new RuntimeException("Employee id not allowed in request body - " + employeeId);
+        }
+
+        Employee patchedEmployee = jsonMapper.updateValue(tempEmployee, patchPayload);
+
+        Employee dbEmployee = employeeService.save(patchedEmployee);
+
+        return dbEmployee;
+    }
+
 
 }
