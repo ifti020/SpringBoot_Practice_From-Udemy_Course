@@ -21,7 +21,7 @@ public class Employee {
     private int id;
 
     @Column(name="first_name")
-    private String firsName;
+    private String firstName;
 
     @Column(name="last_name")
     private String lastName;
@@ -31,8 +31,8 @@ public class Employee {
 
     //2: define constructors
     // constructor a id rakhinai karon  id auto generate hobe
-    public Employee(String firsName, String lastName, String email) {
-        this.firsName = firsName;
+    public Employee(String firstName, String lastName, String email) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
@@ -50,11 +50,11 @@ public class Employee {
     }
 
     public String getFirsName() {
-        return firsName;
+        return firstName;
     }
 
     public void setFirsName(String firsName) {
-        this.firsName = firsName;
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -77,7 +77,7 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", firsName='" + firsName + '\'' +
+                ", firsName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
