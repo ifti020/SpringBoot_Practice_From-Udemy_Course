@@ -35,7 +35,9 @@ Last Name : <input type="text" th:field="${student.lastName}" />
 
         <select th:field="${student.country}">
 <!--            loop over the list of countries "tempCountry" is the temp loop variable-->
-            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}">
+            <option th:each="tempCountry : ${countries}"
+                    th:value="${tempCountry}"
+                    th:text="${tempCountry}">
 
             </option>
         </select>
@@ -45,15 +47,21 @@ Last Name : <input type="text" th:field="${student.lastName}" />
 
     Favourite Programming Language:
     <label>
-    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Go"/>Go
-    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Python"/>Python
-    <input type="radio" th:field="${student.favoriteLanguage}" th:value="'C++'"/>C++
-    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Java"/>Java
+<!--    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Go"/>Go-->
+<!--    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Python"/>Python-->
+<!--    <input type="radio" th:field="${student.favoriteLanguage}" th:value="'C++'"/>C++-->
+<!--    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Java"/>Java-->
+
+<!--        Make Dynamic radio options-->
+        <input type="radio" th:field="*{favoriteLanguage}"
+                            th:each="tempLang: ${languages}"
+                            th:value="${tempLang}"
+                            th:text="${tempLang}" />
+
     </label>
 
     <br> <br>
 <input type="submit" value ="submit"/>
-
 
 
 </form>
