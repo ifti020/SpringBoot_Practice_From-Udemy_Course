@@ -1,0 +1,62 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>
+       Student Registration Form
+    </title>
+
+</head>
+<body>
+<h3> Student Registration Form </h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+
+
+<!--  *{...} is shortcut Syntax for :  ${student.firstName}   -->
+<!--amra ekhane shortcut use korsi -->
+First Name: <input type="text" th:field = "${student.firstName}" />
+<br> <br>
+Last Name : <input type="text" th:field="${student.lastName}" />
+
+    <br><br>
+    Country:
+    <label>
+
+<!--        <select th:field="${student.country}">-->
+<!--            <option th:value="Bangladesh">Bangladesh</option>-->
+<!--            <option th:value="Pakistan">Pakistan</option>-->
+<!--            <option th:value="China">China</option>-->
+<!--            <option th:value="Japan">Japan</option>-->
+<!--            <option th:value="Palestine">Palestine</option>-->
+
+<!--        </select>-->
+
+<!--        no mode hardcore so change previous part-->
+
+        <select th:field="${student.country}">
+<!--            loop over the list of countries "tempCountry" is the temp loop variable-->
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}">
+
+            </option>
+        </select>
+    </label>
+
+    <br><br>
+
+    Favourite Programming Language:
+    <label>
+    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Go"/>Go
+    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Python"/>Python
+    <input type="radio" th:field="${student.favoriteLanguage}" th:value="'C++'"/>C++
+    <input type="radio" th:field="${student.favoriteLanguage}" th:value="Java"/>Java
+    </label>
+
+    <br> <br>
+<input type="submit" value ="submit"/>
+
+
+
+</form>
+</body>
+
+</html>
