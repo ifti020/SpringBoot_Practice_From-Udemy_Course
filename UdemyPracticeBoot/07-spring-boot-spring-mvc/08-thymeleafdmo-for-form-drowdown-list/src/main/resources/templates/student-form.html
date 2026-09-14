@@ -1,0 +1,42 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>
+       Student Registration Form
+    </title>
+
+</head>
+<body>
+<h3> Student Registration Form </h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+
+
+<!--  *{...} is shortcut Syntax for :  ${student.firstName}   -->
+<!--amra ekhane shortcut use korsi -->
+First Name: <input type="text" th:field = "${student.firstName}" />
+<br> <br>
+Last Name : <input type="text" th:field="${student.lastName}" />
+
+    <br><br>
+    Country:
+    <label>
+        <select th:field="${student.country}">
+            <option th:value="Bangladesh">Bangladesh</option>
+            <option th:value="Pakistan">Pakistan</option>
+            <option th:value="China">China</option>
+            <option th:value="Japan">Japan</option>
+            <option th:value="Palestine">Palestine</option>
+
+        </select>
+    </label>
+
+    <br> <br>
+<input type="submit" value ="submit"/>
+
+
+
+</form>
+</body>
+
+</html>
